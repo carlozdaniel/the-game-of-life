@@ -2,23 +2,14 @@ class Board
   attr_reader :panel
   def initialize(size)
     @size = size
-    @panel = Array.new(size{Array.new(size{ Cell.new }) })
+    @panel = Array.new(size){Array.new(size) { Cell.new }}
   end
 
-  def print_board #print 
-    @board = empty_board
-    @board.each do |fila|
-      fila.each do |celula|
-        if rand(10) == 1
-          @VIDA 
-        else
-          @MUERTA 
-        end
-      end
+  def print_panel #print 
+    @panel.each do |row|
+      row.each { |cell| print cell.item }
+      print "\n" 
     end
   end
 
-  def print_space_in_terminal
-    puts "\n"
- end
 end

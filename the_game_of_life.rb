@@ -34,6 +34,7 @@ class The_game_of_life
  end
  
 
+
 end
 
 obj = The_game_of_life.new()

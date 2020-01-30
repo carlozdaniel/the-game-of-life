@@ -12,4 +12,10 @@ class Board
     end
   end
 
+  def random_fill
+    @panel.each do |row|
+      row.each { |cell| cell.alive! if rand(10) == 1 }
+    end
+  end
+
 end

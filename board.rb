@@ -43,5 +43,23 @@ class Board
 
   end
 
+  def next_iteration
+    panel.each_with_index do |row, x_position|
+      row.each_with_index do |cell, y_position|
+        neighbors = capture_neighbors(x_position,y_position)
+        cell.next_state = cell.stay_alive?(neighbors)
+      end
+    end 
+    
+  end
+  
+  def new_state
+    panel.each do |row|
+      row.each do |cell|
+        cell.capture_next_state 
+      end
+    end
+  end
+
 
 end

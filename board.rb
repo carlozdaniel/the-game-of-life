@@ -34,5 +34,14 @@ class Board
     neighbors 
   end 
 
+  def validate_cell(index_x,index_y)
+    if !index_x.negative? && index_x < size && !index_y.negative? && index_y < size
+      true 
+    else 
+      false
+    end
+
+  end
+
 
 end

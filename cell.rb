@@ -14,6 +14,7 @@ class Cell
 
   def capture_next_state
    next_state ? alive! : kill! 
+  #  puts alive?
   end
 
   def alive!
@@ -31,14 +32,10 @@ class Cell
   end
 
   def stay_alive?(neighbors)
-    alive_neighbors = neighbors.select{|element| element.alive?}.count   #(&:alive?).count 
-    return true if alive? && alive_neighbors >= 2 || alive_neighbors <= 3
-    return false if alive? && alive_neighbors <= 1 || alive_neighbors >= 4
+    alive_neighbors = neighbors.select{ |element| element.alive? }.count   #(&:alive?).count 
+    return true if alive? && alive_neighbors >= 2 && alive_neighbors <= 3
+    return false if alive? && alive_neighbors <= 1 && alive_neighbors >= 4
     return true if !alive? && alive_neighbors == 3
     return false if !alive? && alive_neighbors != 3
   end
-
-  
-
-
 end

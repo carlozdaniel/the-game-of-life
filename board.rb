@@ -6,11 +6,12 @@ class Board
   end
 
   def print_panel #print 
-    sleep 1
+    puts `clear`
     @panel.each do |row|
       row.each { |cell| print cell.item }
       print "\n" 
     end
+    sleep 1
   end
 
   def random_fill
@@ -19,28 +20,26 @@ class Board
     end
   end
 
-  
   def capture_neighbors(main_x, main_y)
     neighbors = []
     3.times do |row| 
       neighbor_x = row - 1 + main_x  
       3.times do |column|
         neighbor_y = column - 1 + main_y
-        if validate_cell(neighbor_x,neighbor_y) 
+        if validate_cell([main_x, main_y], [neighbor_x,neighbor_y]) 
           neighbors << panel[neighbor_x][neighbor_y]
         end
       end 
     end
-    neighbors 
+    neighbors
   end 
 
-  def validate_cell(index_x,index_y)
-    if !index_x.negative? && index_x < size && !index_y.negative? && index_y < size
+  def validate_cell(main, index)
+    if !index[0].negative? && index[0] < size && !index[1].negative? && index[1] < size && index != main 
       true 
     else 
       false
     end
-
   end
 
   def next_iteration
@@ -50,7 +49,7 @@ class Board
         cell.next_state = cell.stay_alive?(neighbors)
       end
     end 
-    
+    new_state
   end
   
   def new_state
@@ -60,6 +59,4 @@ class Board
       end
     end
   end
-
-
 end

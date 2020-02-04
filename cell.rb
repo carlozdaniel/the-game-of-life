@@ -1,20 +1,19 @@
+# good
+# Description/Explanation of Person class
 class Cell
-  ITEMS = { alive: " ▇", dead: " ▢"}
-  
+  ITEMS = { alive: " ▇", dead: " ▢" }
 
   attr_reader :item
   attr_accessor :next_state
 
-  def initialize 
+  def initialize
     @alive = false
     @item = ITEMS[:dead]
-    @next_state = false 
-  
+    @next_state = false
   end
 
   def capture_next_state
-   next_state ? alive! : kill! 
-  #  puts alive?
+  next_state ? alive! : kill!
   end
 
   def alive!
@@ -32,7 +31,7 @@ class Cell
   end
 
   def stay_alive?(neighbors)
-    alive_neighbors = neighbors.select{ |element| element.alive? }.count   #(&:alive?).count 
+    alive_neighbors = neighbors.select{ |element| element.alive? }.count
     return true if alive? && alive_neighbors >= 2 && alive_neighbors <= 3
     return false if alive? && alive_neighbors <= 1 && alive_neighbors >= 4
     return true if !alive? && alive_neighbors == 3
